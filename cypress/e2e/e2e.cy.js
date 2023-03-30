@@ -7,7 +7,7 @@ describe('E2E testing - Automation Exercise store', () => {
       cy.visit('https://www.automationexercise.com/');
     })
   
-    //HOME PAGE TESTING
+    //HOME PAGE 
     it('should verify if the slider is visible', () => {
       cy.get("#slider").should('be.visible');
     })
@@ -20,7 +20,7 @@ describe('E2E testing - Automation Exercise store', () => {
       cy.get(".productinfo>h2").eq(0).should('be.visible');
     })
   
-    //BUYING ITEMS TESTING
+    //BUYING 
     it('should be able to add product to the cart from home page', () => {
       cy.get(".add-to-cart").eq(0).click();
       cy.contains("Your product has been added to cart.").should('be.visible');
@@ -30,7 +30,7 @@ describe('E2E testing - Automation Exercise store', () => {
       cy.get(".cart_quantity").find("button").contains('1');
     })
   
-    //DELETE ITEM TESTING
+    //DELETING PRODUCTS
     it('should be able to delete item from the cart', () => {
       cy.get(".add-to-cart").eq(0).click();
       cy.contains("Your product has been added to cart.").should('be.visible');
@@ -42,14 +42,14 @@ describe('E2E testing - Automation Exercise store', () => {
     })
   
   
-    //ITEM PAGE
+    //PRODUCT PAGE
     it('should verify if product page has all needed information', () => {
       cy.contains("View Product").first().click();
       cy.get(".view-product").find('img').should('have.attr', 'src').should('include', 'product');
   
     })
   
-    //SEARCHING ITEMS
+    //SEARCHING PRODUCTS
     it('should check if searching works correctly', () => {
       cy.get("li>a").contains("Products").click();
       cy.get("#search_product").type("dress");
@@ -65,7 +65,7 @@ describe('E2E testing - Automation Exercise store', () => {
       cy.get(".text-center").contains(/Dress|dress/).should('not.exist');
     })
   
-    //ADDING MULTIPLE ITEMS
+    //ADDING MULTIPLE PRODUCTS
     it('should check if it is possible to add multiple times one product with typing the number', () => {
       cy.get("li>a").contains("Products").click();
       cy.contains("View Product").first().click();
