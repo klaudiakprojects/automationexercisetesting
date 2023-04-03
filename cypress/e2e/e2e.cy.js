@@ -20,7 +20,7 @@ describe('E2E testing - Automation Exercise store', () => {
       cy.get(".productinfo>h2").eq(0).should('be.visible');
     })
   
-    //BUYING 
+    //BUYING PRODUCTS
     it('should be able to add product to the cart from home page', () => {
       cy.get(".add-to-cart").eq(0).click();
       cy.contains("Your product has been added to cart.").should('be.visible');
