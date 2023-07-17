@@ -126,7 +126,7 @@ describe('E2E testing - Automation Exercise store', () => {
 
   })
 
-  it.only('should be able to filter through producents', () => {
+  it('should be able to filter through producents', () => {
     cy.get(".brands-name li a").first().then((el) => {
       let brandName = el.text().replace(/\(\d+\)/g, '').trim();
       cy.wrap(el).click();
@@ -146,15 +146,3 @@ describe('E2E testing - Automation Exercise store', () => {
 
 
 })
-
-
-
-
-
-
-
-
-
-
-
-

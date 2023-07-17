@@ -1,11 +1,32 @@
 class CartPage {
-    get product() {
-        return cy.get(".add-to-cart").eq(0).click();
+    get addProductToTheCart() {
+      return cy.get(".add-to-cart").eq(0);
     }
-
-    get addMultipleProducts() {
-        cy.get(".add-to-cart").eq(0).click();
-        cy.get(".add-to-cart").eq(1).click();
+  
+    addProductToTheCartClick() {
+      this.addProductToTheCart.click();
     }
-}
-export const Cart = new CartPage();
+  
+    addMultipleProductsClick() {
+      cy.get(".add-to-cart").eq(0).click();
+      cy.get(".add-to-cart").eq(1).click();
+    }
+  }
+  
+  class HomePage {
+    get mainSlider() {
+      return cy.get("#slider");
+    }
+  
+    get newsletterInput() {
+      return cy.get("#susbscribe_email");
+    }
+  
+    get firstProductPrice() {
+      return cy.get(".productinfo>h2").eq(0);
+    }
+  }
+  
+  export const Cart = new CartPage();
+  export const Home = new HomePage();
+  
