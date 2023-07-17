@@ -1,13 +1,12 @@
 /// <reference types="cypress" />
 
-import { CartPage } from "../support/page-object.cy";
+import CartPage from "../support/page-object.cy.js";
 
 describe('E2E testing - Automation Exercise store', () => {
   beforeEach(() => {
     cy.visit('https://www.automationexercise.com/');
   })
 
-  //HOME PAGE TESTING
   it('should verify if the slider is visible', () => {
     cy.get("#slider").should('be.visible');
   })
@@ -20,19 +19,17 @@ describe('E2E testing - Automation Exercise store', () => {
     cy.get(".productinfo>h2").eq(0).should('be.visible');
   })
 
-  //BUYING ITEMS TESTING
   it('should be able to add product to the cart from home page', () => {
-    cy.get(".add-to-cart").eq(0).click();
+    CartPage.addProductToTheCartClick();
     cy.contains("Your product has been added to cart.").should('be.visible');
-    cy.contains("Continue Shopping").click();
+    CartPage.continueShopping();
     cy.contains("Cart").click()
     cy.get(".cart_product").should('be.visible');
     cy.get(".cart_quantity").find("button").contains('1');
   })
 
-  //DELETE ITEM TESTING
   it('should be able to delete item from the cart', () => {
-    cy.get(".add-to-cart").eq(0).click();
+    CartPage.addProductToTheCartClick();
     cy.contains("Your product has been added to cart.").should('be.visible');
     cy.contains("Continue Shopping").click();
     cy.contains("Cart").click()
@@ -42,14 +39,12 @@ describe('E2E testing - Automation Exercise store', () => {
   })
 
 
-  //ITEM PAGE
   it('should verify if product page has all needed information', () => {
     cy.contains("View Product").first().click();
     cy.get(".view-product").find('img').should('have.attr', 'src').should('include', 'product');
 
   })
 
-  //SEARCHING ITEMS
   it('should check if searching works correctly', () => {
     cy.get("li>a").contains("Products").click();
     cy.get("#search_product").type("dress");
@@ -65,7 +60,6 @@ describe('E2E testing - Automation Exercise store', () => {
     cy.get(".text-center").contains(/Dress|dress/).should('not.exist');
   })
 
-  //ADDING MULTIPLE ITEMS
   it('should check if it is possible to add multiple times one product with typing the number', () => {
     cy.get("li>a").contains("Products").click();
     cy.contains("View Product").first().click();
@@ -75,15 +69,12 @@ describe('E2E testing - Automation Exercise store', () => {
     cy.get("#product-1 > .cart_quantity").contains("5")
   })
 
-  //USING FILTERS
   it('should check if it is possible to use filters', () => {
     cy.get(".panel-title").contains("Women").click();
     cy.contains("Dress ").click();
     cy.get(".text-center").contains(/dress|Dress/);
   })
 
-
-  //VERIFYING  IF SUMMARY IS CORRECT
   it('should verify the summary', () => {
     cy.get("li>a").contains("Products").click();
   
@@ -97,7 +88,7 @@ describe('E2E testing - Automation Exercise store', () => {
         let firstProductName = txt;
         cy.log(firstProductName);
   
-        cy.get(".add-to-cart").eq(0).click();
+        CartPage.addProductToTheCartClick();
         cy.contains("Your product has been added to cart.").should('be.visible');
         cy.contains("View Cart").click();
   
